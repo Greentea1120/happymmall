@@ -1,0 +1,25 @@
+{
+  "name": "mmall-fe",
+  "version": "1.0.0",
+  "description": "mmall前端代码",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Greentea1120/happymmall.git"
+  },
+  "author": "greentea",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Greentea1120/happymmall/issues"
+  },
+  "homepage": "https://github.com/Greentea1120/happymmall#readme",
+  "devDependencies": {
+    "css-loader": "^0.28.4",
+    "style-loader": "^0.18.2",
+    "webpack": "^1.5.0"
+  },
+  "dependencies": {}
+}
