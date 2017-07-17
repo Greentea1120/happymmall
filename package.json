@@ -18,7 +18,12 @@
   "homepage": "https://github.com/Greentea1120/happymmall#readme",
   "devDependencies": {
     "css-loader": "^0.28.4",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "file-loader": "^0.11.2",
+    "html-loader": "^0.4.5",
+    "html-webpack-plugin": "^2.29.0",
     "style-loader": "^0.18.2",
+    "url-loader": "^0.5.9",
     "webpack": "^1.5.0"
   },
   "dependencies": {}
