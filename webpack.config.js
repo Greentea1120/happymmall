@@ -18,9 +18,9 @@ console.log(WEBPACK_ENV)
 
 
 //做判断
-if(WEBPACK_ENV === 'dev'){
+/*if(WEBPACK_ENV === 'dev'){
     config.entry.common.push('webpack-dev-server/client?http://localhost:8088/')
-}
+}*/
 
 
 var config = {
@@ -37,13 +37,21 @@ var config = {
     externals:{
         'jquery':'window.jQuery'
     },
-module:{
-  loaders:[
-      {test:/\.css$/,loader:ExtractTextPlugin.extract("style-loader","css-loader")},
-      {test:/\.(gif|png|jpg|woff|svg|eot|ttf)\??.*$/,loader:'file-loader?limit=1000&name=resource/[name].[ext]'}
+    module:{
+      loaders:[
+          {test:/\.css$/,loader:ExtractTextPlugin.extract("style-loader","css-loader")},
+          {test:/\.(gif|png|jpg|woff|svg|eot|ttf)\??.*$/,loader:'file-loader?limit=1000&name=resource/[name].[ext]'}
 
-  ]
-},
+      ]
+    },
+    resolve:{
+        alias:{
+            util : __dirname + '/src/util',
+            page : __dirname + '/src/page',
+            service : __dirname + '/src/service',
+            image : __dirname + '/src/image',
+        }
+    },
     plugins:[
         //独立通用模块js/base.js
         new webpack.optimize.CommonsChunkPlugin({
