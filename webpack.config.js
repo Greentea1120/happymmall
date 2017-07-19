@@ -12,6 +12,16 @@ var getHtmlConfig = function(name){
         chunks:['common',name]
     }
 }
+//环境变量配置    dev  /  online
+var WEBPACK_ENV  =  process.env.WEBPACK_ENV  ||  'dev'
+console.log(WEBPACK_ENV)
+
+
+//做判断
+if(WEBPACK_ENV === 'dev'){
+    config.entry.common.push('webpack-dev-server/client?http://localhost:8088/')
+}
+
 
 var config = {
     entry: {
@@ -21,7 +31,8 @@ var config = {
     },
     output: {
         path: './dist',
-        filename: 'js/[name].js'
+        filename: 'js/[name].js',
+        publicPath:'/dist'
     },
     externals:{
         'jquery':'window.jQuery'
