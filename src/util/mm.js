@@ -1,5 +1,7 @@
 'use strict';
-
+var conf = {
+    serverHost : ''
+}
 var _mm = {
     // 网络请求
     request : function (param) {
@@ -28,6 +30,18 @@ var _mm = {
             }
         })
     },
+    //获取服务器地址
+    getServerUrl : function (path) {
+        return conf.serverHost + path;
+    },
+    //获取url参数
+    getUrlParam : function (name) {
+        var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)');
+        var result = window.location.search.substr(1).match(reg);
+        console.log(result)
+        return result ? decodeURIComponent(result[2]) : null
+    },
+    //统一登录处理
     doLogin : function(){
         window.location.href = './login.html?redirect=' + encodeURIComponent(window.location.href);
     }

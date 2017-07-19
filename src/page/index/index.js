@@ -11,3 +11,4 @@ _mm.request({
         console.log(errMsg)
     }
 })
+console.log(_mm.getUrlParam('abc'))
