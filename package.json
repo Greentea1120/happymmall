@@ -4,8 +4,8 @@
   "description": "mmall前端代码",
   "main": "index.js",
   "scripts": {
-    "dev" : "WEBPACK_ENV=dev  webpack-dev-server --inline --port 8088",
-    "dev_win" : "set WEBPACK_ENV=dev && webpack-dev-server --inline --port 8088",
+    "dev": "WEBPACK_ENV=dev  webpack-dev-server --inline --port 8088",
+    "dev_win": "set WEBPACK_ENV=dev && webpack-dev-server --inline --port 8088",
     "dist": "WEBPACK_ENV=online  webpack -p",
     "dist_win": "set WEBPACK_ENV=online && webpack -p"
   },
@@ -30,5 +30,7 @@
     "webpack": "^1.5.0",
     "webpack-dev-server": "^1.16.5"
   },
-  "dependencies": {}
+  "dependencies": {
+    "hogan": "^1.0.2"
+  }
 }
