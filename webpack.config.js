@@ -36,7 +36,7 @@ var config = {
     module:{
       loaders:[
           {test:/\.css$/,loader:ExtractTextPlugin.extract("style-loader","css-loader")},
-          {test:/\.(gif|png|jpg|woff|svg|eot|ttf)\??.*$/,loader:'file-loader?limit=1000&name=resource/[name].[ext]'},
+          {test:/\.(gif|png|jpg|woff|svg|eot|ttf)\??.*$/,loader:'url-loader?limit=1000&name=resource/[name].[ext]'},
           {test:/\.string$/,loader:'html-loader'}
 
       ]
