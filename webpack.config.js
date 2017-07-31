@@ -20,10 +20,11 @@ console.log(WEBPACK_ENV)
 
 var config = {
     entry: {
-        'common':['./src/page/common/index.js'],
-        'index':['./src/page/index/index.js'],
-        'user-login':['./src/page/user-login/index.js'],
-        'result':['./src/page/result/index.js'],
+        'common'         : ['./src/page/common/index.js'],
+        'index'          : ['./src/page/index/index.js'],
+        'user-login'     : ['./src/page/user-login/index.js'],
+        'user-register'  : ['./src/page/user-register/index.js'],
+        'result'         : ['./src/page/result/index.js']
     },
     output: {
         path: './dist',
@@ -61,6 +62,7 @@ var config = {
         //html模板的处理
         new htmlWebpackPlugin(getHtmlConfig('index','首页')),
         new htmlWebpackPlugin(getHtmlConfig('user-login','用户登录')),
+        new htmlWebpackPlugin(getHtmlConfig('user-register','用户注册')),
         new htmlWebpackPlugin(getHtmlConfig('result','操作结果'))
     ]
 };

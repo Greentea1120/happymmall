@@ -3,7 +3,17 @@
 require('./index.css')
 require('page/common/nav-simple/index.js');
 var _mm = require('util/mm.js');
-var _user = require('service/user-servcie.js')
+var _user = require('service/user-service.js')
+//表单里的错误提示
+var formError = {
+    show : function (errMsg) {
+        $('.error-item').show().find('.err-msg').text(errMsg);
+    },
+    hide : function () {
+        $('.error-item').hide().find('.err-msg').text('');
+
+    }
+}
 var page = {
     init : function () {
         this.bindEvent();
@@ -26,7 +36,7 @@ var page = {
     submit : function () {
         var formData = {
             username : $.trim($('#username').val()),
-            password : $.trim($('#password').val()),
+            password : $.trim($('#password').val())
         },
         // 表单验证结果
         validateResult = this.formValidate(formData)
@@ -34,14 +44,14 @@ var page = {
         if (validateResult.status){
             //提交
             _user.login(formData,function (res) {
-
+                window.location.href = _mm.getUrlParam('redirect') || './index.html';
             },function (errMsg) {
-
+                formError.show(errMsg)
             })
         }
         //验证失败
         else{
-
+            formError.show(validateResult.msg);
         }
     },
     //表单字段的验证
@@ -51,11 +61,11 @@ var page = {
             msg : ''
         };
         if(!_mm.validate(formData.username,'require')){
-            reusult.msg = '用户名不能为空';
+            result.msg = '用户名不能为空';
             return result;
         }
-        if(_mm.validate(formData.username,'require')){
-            reusult.msg = '密码不能为空';
+        if(!_mm.validate(formData.username,'require')){
+            result.msg = '密码不能为空';
             return result;
         }
         //通过验证,返回正确提示

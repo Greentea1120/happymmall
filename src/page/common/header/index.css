@@ -9,6 +9,7 @@
     font-size: 36px;
     color: #c60023;
     font-weight: bold;
+    text-decoration: none;
 }
 .header .search-con{
     padding: 40px 0 30px 250px;
