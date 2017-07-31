@@ -14,7 +14,7 @@ var nav = {
     },
     bindEvent : function () {
         //登录点击事件
-        $('.js-login').click(function () {
+        $('.js-user-login').click(function () {
             _mm.doLogin();
         })
         //注册点击事件
@@ -33,7 +33,7 @@ var nav = {
     //加载用户信息
     loadUserInfo : function () {
         _user.checkLogin(function (res) {
-            $('.user.not-login').hide().siblings('.user.login').show().find('.username').text(res.username);
+            $('.user.not-user-login').hide().siblings('.user.user-login').show().find('.username').text(res.username);
         },function (errMsg) {
             _mm.errorTips(errMsg)
         })
