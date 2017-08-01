@@ -24,6 +24,7 @@ var config = {
         'index'          : ['./src/page/index/index.js'],
         'user-login'     : ['./src/page/user-login/index.js'],
         'user-register'  : ['./src/page/user-register/index.js'],
+        'user-pass-reset'  : ['./src/page/user-pass-reset/index.js'],
         'result'         : ['./src/page/result/index.js']
     },
     output: {
@@ -63,6 +64,7 @@ var config = {
         new htmlWebpackPlugin(getHtmlConfig('index','首页')),
         new htmlWebpackPlugin(getHtmlConfig('user-login','用户登录')),
         new htmlWebpackPlugin(getHtmlConfig('user-register','用户注册')),
+        new htmlWebpackPlugin(getHtmlConfig('user-pass-reset','找回密码')),
         new htmlWebpackPlugin(getHtmlConfig('result','操作结果'))
     ]
 };
