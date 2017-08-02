@@ -40,7 +40,6 @@ var _mm = {
     getUrlParam : function (name) {
         var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)');
         var result = window.location.search.substr(1).match(reg);
-        console.log(result)
         return result ? decodeURIComponent(result[2]) : null
     },
     //渲染html模板

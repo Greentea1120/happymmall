@@ -4,6 +4,7 @@ var _mm = require('util/mm.js');
 //通用页面头部
 var header = {
     init : function () {
+        this.onLoad();
         this.bindEvent();
     },
     onLoad : function () {
@@ -28,7 +29,7 @@ var header = {
     },
     //搜索的提交
     searchSubmit : function () {
-        var keyword = $.trim(('#search-input').val());
+        var keyword = $.trim($('#search-input').val());
         //如果提交的时候有keyword,正常跳转到List页
         if (keyword){
             window.location.href = './list.html?keyword='+ keyword;
