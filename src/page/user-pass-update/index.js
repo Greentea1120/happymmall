@@ -6,7 +6,7 @@ require('page/common/header/index.js');
 var navSide = require('page/common/nav-side/index.js');
 var _mm = require('util/mm.js');
 var _user = require('service/user-service.js');
-var templateIndex = require('./index.string');
+
 
 
 // page逻辑部分
@@ -18,24 +18,25 @@ var page = {
     onLoad : function () {
         // 初始化左侧菜单
         navSide.init({
-            name : 'user-center'
+            name : 'user-pass-update'
         })
-        // 加载用户信息
-        this.loadUserInfo();
     },
     bindEvent : function () {
         var _this = this;
         // 点击提交按钮后的动作
         $(document).on('click','.btn-submit',function () {
             var userInfo = {
-                phone       : $.trim($('#phone').val()),
-                email       : $.trim($('#email').val()),
-                question    : $.trim($('#question').val()),
-                answer      : $.trim($('#answer').val())
-            },
-            validateResult = _this.validateForm(userInfo);
+                    password             : $.trim($('#password').val()),
+                    passwordNew          : $.trim($('#passwordNew').val()),
+                    passwordConfirm      : $.trim($('#passwordConfirm').val())
+                },
+                validateResult = _this.validateForm(userInfo);
             if(validateResult.status){
-                _user.updateUserInfo(userInfo,function (res,msg) {
+                //更改用户密码
+                _user.updatePassword({
+                    passwordOld : userInfo.password,
+                    passwordNew : userInfo.passwordConfirm
+                },function (res,msg) {
                     _mm.successTips(msg);
                     window.location.href = './user-center.html'
                 },function (errMsg) {
@@ -47,15 +48,7 @@ var page = {
             }
         })
     },
-    loadUserInfo : function () {
-        var userHtml = ''
-        _user.getUserInfo(function (res) {
-            userHtml = _mm.renderHtml(templateIndex,res);
-            $('.panel-body').html(userHtml);
-        },function (errMsg) {
-            _mm.errorTips(errMsg);
-        })
-    },
+
     //验证字段信息
     validateForm : function (formData) {
         var result = {
@@ -63,24 +56,19 @@ var page = {
             msg : ''
         };
 
-        //验证手机号
-        if(!_mm.validate(formData.phone,'phone')){
-            result.msg = '手机号格式不正确';
+        //验证原密码是否为空
+        if(!_mm.validate(formData.password,'require')){
+            result.msg = '原密码不能为空';
             return result;
         }
-        //验证邮箱
-        if(!_mm.validate(formData.email,'email')){
-            result.msg = '邮箱格式不正确';
+        //验证新密码长度
+        if(!formData.passwordNew || formData.passwordNew.length <6){
+            result.msg = '密码长度不能少于6位';
             return result;
         }
-        //密码提示问题是否为空
-        if(!_mm.validate(formData.question,'require')){
-            result.msg = '密码提示问题不能为空';
-            return result;
-        }
-        //密码提示答案是否为空
-        if(!_mm.validate(formData.answer,'require')){
-            result.msg = '密码提示答案不能为空';
+        //判断两次输入的密码是否一致
+        if(formData.passwordNew !== formData.passwordConfirm){
+            result.msg = '两次输入的密码不一致';
             return result;
         }
         //通过验证,返回正确提示
