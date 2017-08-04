@@ -74,3 +74,14 @@
     color: #666;
     text-decoration: none;
 }
+/*错误信息*/
+.err-tip{
+    padding: 0 10px;
+    height: 60px;
+    line-height: 60px;
+    color: #f60;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    background: #eee;
+}
