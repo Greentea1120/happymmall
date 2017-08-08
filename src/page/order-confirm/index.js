@@ -7,7 +7,7 @@ var _order = require('service/order-service.js');
 var _address = require('service/address-service.js');
 var templateAddress = require('./address-list.string');
 var templateProduct = require('./product-list.string');
-
+var addressModal = require('./address-modal.js');
 var page = {
     data : {
         selectedAddressId : null
@@ -41,6 +41,15 @@ var page = {
             }else{
                 _mm.errorTips('请选择地址后再提交');
             }
+        });
+        //地址的添加
+        $(document).on('click','.address-add',function () {
+            addressModal.show({
+                isUpdate : false,
+                onSuccess : function () {
+                    _this.loadAddressList();
+                }
+            })
         });
 
     },
