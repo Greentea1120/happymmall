@@ -122,7 +122,7 @@ var page = {
         $(document).on('click','.btn-submit',function () {
             //总价大于0,进行提交
             if(_this.data.cartInfo && _this.data.cartInfo.cartTotalPrice > 0){
-                window.location.href = './confirm.html';
+                window.location.href = './order-confirm.html';
             }else{
                 _mm.errorTips('请选择商品后提交');
             }
