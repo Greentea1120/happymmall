@@ -18,6 +18,15 @@ var _order = {
             success : resolve,
             error : reject
         })
+    },
+    //获取订单列表
+    getOrderList : function (listParam, resolve, reject) {
+        _mm.request({
+            url:_mm.getServerUrl('/order/list.do'),
+            data : listParam,
+            success : resolve,
+            error : reject
+        })
     }
 
 

@@ -99,8 +99,6 @@ var page = {
                 _this.loadList();
             }
         }));
-
-
     }
 };
 $(function () {

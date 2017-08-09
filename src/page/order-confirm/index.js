@@ -28,7 +28,7 @@ var page = {
             _this.data.selectedAddressId = $(this).data('id');
         });
         //订单的提交
-        $(document).on('click','order-submit',function () {
+        $(document).on('click','.order-submit',function () {
             var shippingId = _this.data.selectedAddressId;
             if(shippingId){
                 _order.createOrder({
