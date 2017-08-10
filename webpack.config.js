@@ -7,6 +7,7 @@ var getHtmlConfig = function(name,title){
     return {
         template:'./src/view/' + name +'.html',
         filename:'view/' + name + '.html',
+        favicon : './favicon.ico',
         title:title,
         inject:true,
         hash:true,
@@ -35,12 +36,13 @@ var config = {
         'user-center'           : ['./src/page/user-center/index.js'],
         'user-center-update'    : ['./src/page/user-center-update/index.js'],
         'user-pass-update'      : ['./src/page/user-pass-update/index.js'],
-        'result'                : ['./src/page/result/index.js']
+        'result'                : ['./src/page/result/index.js'],
+        'about'                : ['./src/page/about/index.js'],
     },
     output: {
-        path: './dist',
+        path: __dirname + '/dist/',
         filename: 'js/[name].js',
-        publicPath:'/dist/'
+        publicPath : WEBPACK_ENV === 'dev' ? '/dist/' : '//s.happymmall.com/mall-fe/dist/'
     },
     externals:{
         'jquery':'window.jQuery'
@@ -49,7 +51,14 @@ var config = {
       loaders:[
           {test:/\.css$/,loader:ExtractTextPlugin.extract("style-loader","css-loader")},
           {test:/\.(gif|png|jpg|woff|svg|eot|ttf)\??.*$/,loader:'url-loader?limit=1000&name=resource/[name].[ext]'},
-          {test:/\.string$/,loader:'html-loader'}
+          {
+              test:/\.string$/,
+              loader:'html-loader',
+              query : {
+                  minimize : true,
+                  removeAttributeQuotes : false
+              }
+          }
 
       ]
     },
@@ -85,7 +94,8 @@ var config = {
         new htmlWebpackPlugin(getHtmlConfig('user-center','个人中心')),
         new htmlWebpackPlugin(getHtmlConfig('user-center-update','修改个人信息')),
         new htmlWebpackPlugin(getHtmlConfig('user-pass-update','修改密码')),
-        new htmlWebpackPlugin(getHtmlConfig('result','操作结果'))
+        new htmlWebpackPlugin(getHtmlConfig('result','操作结果')),
+        new htmlWebpackPlugin(getHtmlConfig('about','关于mall'))
     ]
 };
 
